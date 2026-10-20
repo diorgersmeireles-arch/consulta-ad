@@ -1,0 +1,14 @@
+# Saídas geradas pelo script
+Resultado_AD/
+tests/out_*/
+tests/entrada_*.csv
+
+# Logs e temporários
+*.log
+*.tmp
+Thumbs.db
+Desktop.ini
+
+# Editores
+.vscode/
+.idea/

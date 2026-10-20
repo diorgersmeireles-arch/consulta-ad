@@ -1,0 +1,5 @@
+# Normaliza fim de linha para CRLF (scripts rodam no Windows)
+* text=auto
+*.ps1 text eol=crlf
+*.psm1 text eol=crlf
+*.csv text eol=crlf
