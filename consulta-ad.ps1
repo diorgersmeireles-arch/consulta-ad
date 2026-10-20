@@ -483,7 +483,7 @@ function Split-DN {
         [string]$DN
     )
 
-    $partes = New-Object 'System.Collections.Generic.List[string]'
+    $partes = New-Object System.Collections.ArrayList
 
     $atual = New-Object System.Text.StringBuilder
 
@@ -503,7 +503,7 @@ function Split-DN {
         }
         elseif ($c -eq ',') {
 
-            $partes.Add($atual.ToString())
+            [void]$partes.Add($atual.ToString())
             [void]$atual.Clear()
         }
         else {
@@ -517,7 +517,7 @@ function Split-DN {
         [void]$atual.Append('\')
     }
 
-    $partes.Add($atual.ToString())
+    [void]$partes.Add($atual.ToString())
 
     return $partes
 }
@@ -682,10 +682,10 @@ function Add-MapaOU {
 
             if (-not $mapaFilhas.ContainsKey($pai)) {
 
-                $mapaFilhas[$pai] = New-Object 'System.Collections.Generic.List[string]'
+                $mapaFilhas[$pai] = New-Object System.Collections.ArrayList
             }
 
-            $mapaFilhas[$pai].Add($DN)
+            [void]$mapaFilhas[$pai].Add($DN)
         }
     }
 
@@ -793,7 +793,7 @@ $adProps["Properties"] = @(
 Write-Host ""
 Write-Host "-> Preparando lista de consulta..." -ForegroundColor Cyan
 
-$entradas = New-Object 'System.Collections.Generic.List[object]'
+$entradas = New-Object System.Collections.ArrayList
 
 foreach ($l in $lista) {
 
@@ -813,7 +813,7 @@ foreach ($l in $lista) {
 
     if ($nomeL -or $mailL -or $samL) {
 
-        $entradas.Add(
+        [void]$entradas.Add(
             [PSCustomObject]@{
                 Nome = $nomeL
 
@@ -872,14 +872,14 @@ function Add-Indice {
 
     if (-not $Indice.ContainsKey($Chave)) {
 
-        $Indice[$Chave] = New-Object 'System.Collections.Generic.List[object]'
+        $Indice[$Chave] = New-Object System.Collections.ArrayList
     }
 
     $existente = $Indice[$Chave]
 
     if (-not $existente.Contains($Usuario)) {
 
-        $existente.Add($Usuario)
+        [void]$existente.Add($Usuario)
     }
 }
 
@@ -890,7 +890,7 @@ function Get-UsuariosLote {
         [string]$Modelo
     )
 
-    $resultado = New-Object 'System.Collections.Generic.List[object]'
+    $resultado = New-Object System.Collections.ArrayList
 
     if (-not $Valores) {
 
@@ -925,7 +925,7 @@ function Get-UsuariosLote {
 
             foreach ($u in $lote) {
 
-                $resultado.Add($u)
+                [void]$resultado.Add($u)
             }
         }
         catch {
